@@ -85,10 +85,11 @@ input::placeholder {
 }
 
 .button {
+   display: inline-block;
+   margin: 5px 0;
+   padding: 5px 10px;
    color: #000;
    text-decoration: none;
-   display: inline-block;
-   padding: 5px 10px;
    background-color: #ffa;
    border: 1px solid #333;
    transition: all .5s ease;

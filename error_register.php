@@ -1,12 +1,13 @@
-<?php echo '<pre>';
+<?php 
+   echo '<pre>';
    try {
       $action = '';
-      $error = false;
+      $fieldsError = false;
       $userUniqueError = false;
       $errorText = '';
       if (!empty($_POST)) {
          if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['email']) || empty($_POST['tel'])) {
-            $error = true;
+            $fieldsError = true;
             throw new Exception("Заповнені не всі поля");
          } else {
             // Читання простої 'БД' Юзерів:

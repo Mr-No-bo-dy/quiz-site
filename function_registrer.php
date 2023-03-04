@@ -1,4 +1,5 @@
 <?php
+   echo '<pre>';
    $userData = [];
    foreach ($_POST as $key => $val) {
       $userData[$key] = $val;
@@ -25,4 +26,5 @@
    $file = 'users';
    file_write($file, $userData);
    
+   echo '</pre>';
    header("Location: login.php");

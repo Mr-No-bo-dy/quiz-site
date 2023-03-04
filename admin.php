@@ -18,8 +18,8 @@
       </div>
    </div>
 
-   <?php //if (!isset($_POST['user_quiz'])) { ?>
-   <div class="<?= $user_quiz_error ? 'users' : 'dn' ?>">
+   <?php // if (!isset($_POST['user_quiz'])) { ?>
+   <div class="<?= !$all_quiz && $user_quiz_error ? '' : 'dn' ?>">
       <h2>All Users:</h2>
       <table class="allUsers">
          <thead>
@@ -44,8 +44,7 @@
                <td>
                   <?php if (!empty($row['quiz'])) { ?>
                      <form action="" method="post">
-                        <input type="hidden" name="user_quiz" value="<?= $row['username'] ?>">
-                        <input type="submit" name="" value="Show Results">
+                        <button class="button" type="submit" name="user_quiz" value="<?= $row['username'] ?>">Show Results</button>
                      </form>
                   <?php } ?>
                </td>
@@ -54,10 +53,10 @@
          </tbody>
       </table>
    </div>
-   <?php //} ?>
+   <?php // } ?>
 
    <?php //if (isset($_POST['user_quiz'])) { ?>
-   <div class="<?= $user_quiz_error ? 'dn' : 'users' ?>">
+   <div class="<?= $user_quiz_error || $all_quiz ? 'dn' : '' ?>">
       <h2><?= $_POST['user_quiz'] ?>'s Quiz Results:</h2>
       <table class="quizResults">
          <thead>
@@ -87,48 +86,52 @@
             </tr>
          </tbody>
       </table>
-
       <form action="" method="post">
-         <input type="submit" name="users_info" value="Show users">
+         <input class="button" type="submit" name="users_info" value="Show users">
       </form>
-
    </div>
    <?php //} ?>
 
-   <!-- (Зараз відключено відображення класом 'dn') -->
-   <?php //if (!isset($_POST['user_quiz'])) { ?>
-   <div class="<?= $user_quiz_error ? 'dn' : 'dn' ?>">
-      <h2>All Quiz Results:</h2>
-      <table class="quizResults">
-         <thead>
-            <tr>
-               <th rowspan="2">Try</th><th rowspan="2">Username</th><th colspan="2">Results</th><th rowspan="2">Date</th>
-            </tr>
-            <tr>
-               <th>Rights</th><th>Percentage</th>
-            </tr>
-         </thead>
-         <tbody>
-         <?php foreach ($_SESSION['quiz'] as $key => $row) { ?>
-            <tr>
-               <td><?= $key ?></td>
-               <td><?= $row['username'] ?></td>
-               <td><?= $row['rights'] ?></td>
-               <td><?= $row['percent'] ?>%</td>
-               <td><?= $row['date'] ?></td>
-            </tr>
-         <?php } ?>
-            <tr>
-               <td><b>Average</b></td>
-               <td><b>All</b></td>
-               <td><b><?= $_SESSION['averageAll']['rights'] ?></b></td>
-               <td><b><?= $_SESSION['averageAll']['percent'] ?>%</b></td>
-               <td><b> - </b></td>
-            </tr>
-         </tbody>
-      </table>
-   </div>
-   <?php //} ?>
+   <?php if ($all_quiz) { ?>
+      <div class="">
+         <h2>All Quiz Results:</h2>
+         <table class="quizResults">
+            <thead>
+               <tr>
+                  <th rowspan="2">Try</th><th rowspan="2">Username</th><th colspan="2">Results</th><th rowspan="2">Date</th>
+               </tr>
+               <tr>
+                  <th>Rights</th><th>Percentage</th>
+               </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($_SESSION['quiz'] as $key => $row) { ?>
+               <tr>
+                  <td><?= $key ?></td>
+                  <td><?= $row['username'] ?></td>
+                  <td><?= $row['rights'] ?></td>
+                  <td><?= $row['percent'] ?>%</td>
+                  <td><?= $row['date'] ?></td>
+               </tr>
+            <?php } ?>
+               <tr>
+                  <td><b>Average</b></td>
+                  <td><b>All</b></td>
+                  <td><b><?= $_SESSION['averageAll']['rights'] ?></b></td>
+                  <td><b><?= $_SESSION['averageAll']['percent'] ?>%</b></td>
+                  <td><b> - </b></td>
+               </tr>
+            </tbody>
+         </table>
+         <form action="" method="post">
+            <input class="button" type="submit" name="users_info" value="Show users">
+         </form>
+      </div>
+   <?php } else { ?>
+      <form action="" method="post">
+         <input class="button" type="submit" name="all_quiz" value="Show all results">
+      </form>
+   <?php } ?>
 
 </div>
 

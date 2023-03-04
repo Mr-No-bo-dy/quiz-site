@@ -1,13 +1,14 @@
-<?php echo '<pre>';
+<?php 
+   echo '<pre>';
    try {
       $action = '';
-      $errorText = '';
-      $error = false;
+      $fieldsError = false;
       $userLoginError = true;
+      $errorText = '';
       $admin = 'mrnobody';
       if (!empty($_POST)) {
          if (empty($_POST['username']) || empty($_POST['password'])) {
-            $error = true;
+            $fieldsError = true;
             throw new Exception("Порожні поля");
          } else {
             // Читання простої 'БД' Юзерів:
@@ -27,7 +28,7 @@
                if ($usersData['users'][$row[0]]['username'] == $_POST['username']) {
                   if (password_verify($_POST['password'], $usersData['users'][$row[0]]['password'])) {      // Перевірка закодованого паролю
                      $userLoginError = false;
-                     session_start();
+                     // session_start();
                      session_destroy();      // Очистка Сесії
                      session_start();
                      // Якщо Адмін - запис даних ВСІХ юзерів в Сесію і перенаправлення в "Адмінку":
@@ -45,7 +46,6 @@
                               $_SESSION['users'][$row[0]]['avatar'] = $row[4];
                            }
                         }
-                        
                         header('Location: admin.php');
                         
                      } else {
@@ -54,7 +54,6 @@
                         $_SESSION['users']['user']['email'] = $usersData['users'][$_POST['username']]['email'];
                         $_SESSION['users']['user']['tel'] = $usersData['users'][$_POST['username']]['tel'];
                         $_SESSION['users']['user']['avatar'] = $usersData['users'][$_POST['username']]['avatar'];
-
                         header('Location: index.php');
                      }
                   } else {

@@ -51,26 +51,7 @@
       }
       return $arrayAsoc;
    }
-
-   // Повертає останній ключ масиву:
-   function end_key($array){
-      end($array);
-      return key($array);
-   }
-
-   // html-таблиця за допомогою php:
-   function table_users($doubleArray = []) {
-      foreach ($doubleArray as $row) { ?>
-         <tr>
-         <?php foreach ($row as $cell) { ?>
-            <?php if (!is_array($cell)) { ?>
-               <td><?= $cell ?></td>
-            <?php } ?>
-         <?php } ?>
-         </tr>
-      <?php }
-   }
-
+   
    // html-таблиця для простого 2-вимірного масиву:
    function table_quiz_results($doubleArray, $index = null) {
       $index = 1;

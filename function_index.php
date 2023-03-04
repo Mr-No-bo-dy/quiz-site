@@ -1,9 +1,9 @@
-<?php echo '<pre>';
+<?php 
+   echo '<pre>';
    session_start();
 
    // If USER:
    if (isset($_SESSION['users']['user'])) {
-      $quizError = true;
       $errorText = '';
       $name = $_SESSION['users']['user']['username'];
       $email = $_SESSION['users']['user']['email'];
@@ -38,10 +38,7 @@
 
       // Заглушка і повідомлення, якщо Тест ще НЕ проходили:
       try {
-         if (isset($_SESSION['quiz'])) {
-            $quizError = false;
-         } else {
-            // echo "<h2 style='color: red'>Ви ще НЕ проходили тести. Пройдіть, інакше вас виженуть з Універа!</h2>";
+         if (!isset($_SESSION['quiz'])) {
             throw new Exception("Ви ще НЕ проходили тести. Пройдіть, інакше вас виженуть з Універа!");
          }
       } catch (Exception $e) {

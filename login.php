@@ -11,8 +11,8 @@
          <?php if (!empty($errorText)) { ?>
             <span class="error-unique"><?= $errorText ?></span>
          <?php } ?>
-         <input class="<?= $error ? 'error-input' : '' ?>" type="text" name="username" value="<?= empty($_POST['username']) ? '' : $_POST['username'] ?>" placeholder="Enter Username">
-         <input class="<?= $error ? 'error-input' : '' ?>" type="password" name="password" value="<?= empty($_POST['password']) ? '' : $_POST['password'] ?>" placeholder="Enter Password">
+         <input class="<?= $fieldsError ? 'error-input' : '' ?>" type="text" name="username" value="<?= empty($_POST['username']) ? '' : $_POST['username'] ?>" placeholder="Enter Username">
+         <input class="<?= $fieldsError ? 'error-input' : '' ?>" type="password" name="password" value="<?= empty($_POST['password']) ? '' : $_POST['password'] ?>" placeholder="Enter Password">
          <button class="button" type="submit">Login</button>
       </form>
    </div>

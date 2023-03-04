@@ -11,10 +11,10 @@
          <?php if (!empty($errorText)) { ?>
             <span class="error-unique"><?= $errorText ?></span>
          <?php } ?>
-         <input class="<?= $error || $userUniqueError ? 'error-input error-unique' : '' ?>" type="text" name="username" value="<?= empty($_POST['username']) ? '' : $_POST['username'] ?>" placeholder="Enter Username">
-         <input class="<?= $error ? 'error-input' : '' ?>" type="password" name="password" value="<?= empty($_POST['password']) ? '' : $_POST['password'] ?>" placeholder="Enter Password">
-         <input class="<?= $error ? 'error-input' : '' ?>" type="email" name="email" value="<?= empty($_POST['email']) ? '' : $_POST['email'] ?>" placeholder="Enter Email">
-         <input class="<?= $error ? 'error-input' : '' ?>" type="tel" name="tel" value="<?= empty($_POST['tel']) ? '' : $_POST['tel'] ?>" placeholder="Enter Phone ">
+         <input class="<?= $fieldsError ? 'error-input' : (!empty($errorText) ? 'error-unique' : '') ?>" type="text" name="username" value="<?= empty($_POST['username']) ? '' : $_POST['username'] ?>" placeholder="Enter Username">
+         <input class="<?= $fieldsError ? 'error-input' : '' ?>" type="password" name="password" value="<?= empty($_POST['password']) ? '' : $_POST['password'] ?>" placeholder="Enter Password">
+         <input class="<?= $fieldsError ? 'error-input' : '' ?>" type="email" name="email" value="<?= empty($_POST['email']) ? '' : $_POST['email'] ?>" placeholder="Enter Email">
+         <input class="<?= $fieldsError ? 'error-input' : '' ?>" type="tel" name="tel" value="<?= empty($_POST['tel']) ? '' : $_POST['tel'] ?>" placeholder="Enter Phone ">
          <input type="file" name="avatar">
          <button class="button" type="submit">Register</button>
       </form>
