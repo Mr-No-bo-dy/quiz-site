@@ -43,3 +43,4 @@
       $errorText = $e->getMessage();
    }
    echo '</pre>';
+?>

@@ -28,3 +28,4 @@
    
    echo '</pre>';
    header("Location: login.php");
+?>

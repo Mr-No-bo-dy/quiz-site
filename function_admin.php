@@ -89,4 +89,5 @@
       header("Location: login.php");
    }
    
-   echo '</pre>'; ?>
+   echo '</pre>';
+?>

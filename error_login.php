@@ -28,7 +28,6 @@
                if ($usersData['users'][$row[0]]['username'] == $_POST['username']) {
                   if (password_verify($_POST['password'], $usersData['users'][$row[0]]['password'])) {      // Перевірка закодованого паролю
                      $userLoginError = false;
-                     // session_start();
                      session_destroy();      // Очистка Сесії
                      session_start();
                      // Якщо Адмін - запис даних ВСІХ юзерів в Сесію і перенаправлення в "Адмінку":
@@ -68,3 +67,4 @@
    }
    
    echo '</pre>';
+?>

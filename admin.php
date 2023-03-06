@@ -18,45 +18,45 @@
       </div>
    </div>
 
-   <?php // if (!isset($_POST['user_quiz'])) { ?>
-   <div class="<?= !$all_quiz && $user_quiz_error ? '' : 'dn' ?>">
-      <h2>All Users:</h2>
-      <table class="allUsers">
-         <thead>
-            <tr>
-               <th>Username</th><th>Email</th><th>Phone number</th><th>Avatar</th><th>Best Result</th><th>See All Results</th>
-            </tr>
-         </thead>
-         <tbody>
-         <?php foreach ($_SESSION['users'] as $key => $row) { ?>
-            <tr>
-               <td><?= $row['username'] ?></td>
-               <td><?= $row['email'] ?></td>
-               <td><?= $row['tel'] ?></td>
-               <td>
-                  <?php if (!empty($row['avatar'])) { ?>
-                     <img class="ava" src="uploads/<?= $row['avatar'] ?>" alt="user_avatar">
-                  <?php } ?>
-               </td>
-               <td>
-                  <?= empty($row['quiz']) ? '' : $row['quiz'] . '%' ?>
-               </td>
-               <td>
-                  <?php if (!empty($row['quiz'])) { ?>
-                     <form action="" method="post">
-                        <button class="button" type="submit" name="user_quiz" value="<?= $row['username'] ?>">Show Results</button>
-                     </form>
-                  <?php } ?>
-               </td>
-            </tr>
-         <?php } ?>
-         </tbody>
-      </table>
-   </div>
-   <?php // } ?>
+   <?php if ($user_quiz_error && !$all_quiz) { ?>
+      <div class="">
+         <h2>All Users:</h2>
+         <table class="allUsers">
+            <thead>
+               <tr>
+                  <th>Username</th><th>Email</th><th>Phone number</th><th>Avatar</th><th>Best Result</th><th>See All Results</th>
+               </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($_SESSION['users'] as $key => $row) { ?>
+               <tr>
+                  <td><?= $row['username'] ?></td>
+                  <td><?= $row['email'] ?></td>
+                  <td><?= $row['tel'] ?></td>
+                  <td>
+                     <?php if (!empty($row['avatar'])) { ?>
+                        <img class="ava" src="uploads/<?= $row['avatar'] ?>" alt="user_avatar">
+                     <?php } ?>
+                  </td>
+                  <td>
+                     <?= empty($row['quiz']) ? '' : $row['quiz'] . '%' ?>
+                  </td>
+                  <td>
+                     <?php if (!empty($row['quiz'])) { ?>
+                        <form action="" method="post">
+                           <button class="button" type="submit" name="user_quiz" value="<?= $row['username'] ?>">Show Results</button>
+                        </form>
+                     <?php } ?>
+                  </td>
+               </tr>
+            <?php } ?>
+            </tbody>
+         </table>
+      </div>
+   <?php } ?>
 
-   <?php //if (isset($_POST['user_quiz'])) { ?>
-   <div class="<?= $user_quiz_error || $all_quiz ? 'dn' : '' ?>">
+   <?php if (!$user_quiz_error && !$all_quiz) { ?>
+   <div class="">
       <h2><?= $_POST['user_quiz'] ?>'s Quiz Results:</h2>
       <table class="quizResults">
          <thead>
@@ -90,11 +90,14 @@
          <input class="button" type="submit" name="users_info" value="Show users">
       </form>
    </div>
-   <?php //} ?>
+   <?php } ?>
 
    <?php if ($all_quiz) { ?>
       <div class="">
          <h2>All Quiz Results:</h2>
+         <form action="" method="post">
+            <input class="button" type="submit" name="users_info" value="Show users">
+         </form>
          <table class="quizResults">
             <thead>
                <tr>
@@ -123,9 +126,6 @@
                </tr>
             </tbody>
          </table>
-         <form action="" method="post">
-            <input class="button" type="submit" name="users_info" value="Show users">
-         </form>
       </div>
    <?php } else { ?>
       <form action="" method="post">
