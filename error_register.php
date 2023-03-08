@@ -4,6 +4,8 @@
       $action = '';
       $fieldsError = false;
       $userUniqueError = false;
+      $userEmailError = true;
+      $userTelError = true;
       $errorText = '';
       if (!empty($_POST)) {
          if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['email']) || empty($_POST['tel'])) {
@@ -32,8 +34,26 @@
                }
             }
 
+            // Перевірка Імейла:
+            if (preg_match('#(ru|rus)$#', $_POST['email'])) {
+               throw new Exception("Московитським окупантам тут не місце!");
+            } elseif (!preg_match('#^[a-zA-Z0-9-.]+@[a-z]+\.[a-z]{2,3}$#', $_POST['email'])) {
+               throw new Exception("Такої електронної адреси не існує");
+            } else {
+               $userEmailError = false;
+            }
+
+            // Перевірка Телефону:
+            if (preg_match('#^(\+7)#', $_POST['tel'])) {
+               throw new Exception("Московитським окупантам тут не місце!");
+            } elseif (!preg_match('#^(\+)[0-9]{12}$#', $_POST['tel'])) {
+               throw new Exception("Введіть номер телефону в міжнародному форматі без додаткових символів");
+            } else {
+               $userTelError = false;
+            }
+
             $function_registrer = 'function_registrer';
-            if (!$userUniqueError) {
+            if (!$userUniqueError && !$userEmailError) {
                registration($function_registrer);
             }
          }
