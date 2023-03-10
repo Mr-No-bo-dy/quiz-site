@@ -77,6 +77,19 @@
       ],
    ];
 
+   // Перемішування масиву всіх питань і вибір з них потрібної кількості рандомних:
+   $quizDone = [];
+   shuffle_assoc($quiz);
+   $iterations = 5;        // Кількість питань для тестів
+   $counter = 0;
+   foreach ($quiz as $question => $allChoices) {
+      shuffle_assoc($allChoices);
+      $quizDone[$question] = $allChoices;
+      $counter++;
+      if ($counter >= $iterations) {
+         break;
+      }
+   }
    echo '</pre>';
 
    // Якщо тест завершено: Опрацювання, Зберігання рез-тів і Перенаправлення на Головну:

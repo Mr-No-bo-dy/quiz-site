@@ -37,34 +37,5 @@
       return true;
    }
 
-
-      // NOT USED FUNCTIONS:
-   // Перебір масиву:
-   function read_array($arrayInd, $row, $arrayAsoc = []) {
-      // $arrayAsoc = [];
-      foreach ($arrayInd as $row) {
-         $arrayAsoc['users'][$row[0]]['username'] = $row[0];
-         $arrayAsoc['users'][$row[0]]['password'] = $row[1];
-         $arrayAsoc['users'][$row[0]]['email'] = $row[2];
-         $arrayAsoc['users'][$row[0]]['tel'] = $row[3];
-         $arrayAsoc['users'][$row[0]]['avatar'] = $row[4];
-      }
-      return $arrayAsoc;
-   }
-   
-   // html-таблиця для простого 2-вимірного масиву:
-   function table_quiz_results($doubleArray, $index = null) {
-      $index = 1;
-      foreach ($doubleArray as $array) { ?>
-         <tr>
-            <td><?= $index ?></td>
-            <td><?= $array['rights'] ?></td>
-            <td><?= $array['percent'] ?></td>
-            <td><?= $array['date'] ?></td>
-         <?php $index++; ?>
-         </tr>
-      <?php }
-   }
-
    // echo '</pre>';
 ?>
